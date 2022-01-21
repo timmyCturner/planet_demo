@@ -1,18 +1,20 @@
-.display {
-  font-size: 2em;
-}
 .flex-row {
     display: flex;
     justify-content: center;
     text-align: center;
     align-items: center;
+    border: 2px solid white;
 }
 .flex-row>*{
   max-width: 50%;
   width: 100%;
+  padding-bottom: 5px;
 }
 body{
   font-family: Arial, Helvetica, sans-serif;
+  background: black;
+  color: white;
+  margin: 0;
 }
 h1{
   margin: 5px 0;
