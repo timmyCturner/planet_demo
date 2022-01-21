@@ -273,10 +273,13 @@ if (!window.requestAnimationFrame) {
                        // console.log(document.getElementsByClassName("display")[0]);
                        // console.log(intersects);
                        var display = intersects[0].object.name;
-                       var population = intersects[0].object.population;
-                       if (population === undefined){
-                         population = '---'
+                       if (display != "Earth"){
+                         var population = intersects[0].object.population;
+                         if (population === undefined){
+                           population = '---'
+                         }
                        }
+
                        console.log(population);
                        document.getElementsByClassName("display")[0].innerHTML = display
                        document.getElementsByClassName("population")[0].innerHTML = population
