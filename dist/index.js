@@ -165,12 +165,12 @@ if (!window.requestAnimationFrame) {
 
                var geometry = new SphereGeometry( 50, 32, 16);
                //var material = new THREE.MeshBasicMaterial( { color: "#166294" } );
-               const texture = new TextureLoader().load( '/assets/textures/Earth.002_diffuse.jpeg' );
+               const texture = new TextureLoader().load( 'assets/textures/Earth.002_diffuse.jpeg' );
                const material = new MeshBasicMaterial( { map: texture } );
                sphere = new Mesh( geometry, material );
                sphere.name = 'Earth'
                //log calcrow
-               const city_list = await fetch('/assets/json/sample.json');
+               const city_list = await fetch('assets/json/sample.json');
                console.log(city_list);
                // .then(response => response.json())
                // .then(data => console.log(data))
