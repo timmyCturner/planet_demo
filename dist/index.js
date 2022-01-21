@@ -61,13 +61,13 @@ function calcCrow(latitude, longitude, radius)
 
    const lat =  latitude;
    const lon =  longitude;
-   console.log(Math.cos(lat),Math.cos(lon));
+   //console.log(Math.cos(lat),Math.cos(lon));
    const x = radius*Math.cos(lat) * Math.cos(lon)
 
    const y = radius*Math.cos(lat) * Math.sin(lon)
 
    const z = radius*Math.sin(lat)
-   console.log((6371*x/250),(6371*y/250),(6371*z/250));
+   //console.log((6371*x/250),(6371*y/250),(6371*z/250));
    return {x,y,z}
 
 }
@@ -171,7 +171,7 @@ if (!window.requestAnimationFrame) {
 
               scene.background = back_texture ;
                //scene.background = new Color( 0x00cccc );
-               console.log(scene);
+               //console.log(scene);
                camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
                //console.log(camera);
                camera.position.y = 0;
@@ -273,17 +273,19 @@ if (!window.requestAnimationFrame) {
                        // console.log(document.getElementsByClassName("display")[0]);
                        // console.log(intersects);
                        var display = intersects[0].object.name;
-                       if (display != "Earth"){
-                         console.log(display);
+                       if (display != "Earth" && display!== "undefined"){
+                         //sconsole.log(display);
                          var population = intersects[0].object.population;
                          if (population === undefined){
                            population = '---'
+
                          }
+                         document.getElementsByClassName("display")[0].innerHTML = display
+                         document.getElementsByClassName("population")[0].innerHTML = population
                        }
 
-                       console.log(population);
-                       document.getElementsByClassName("display")[0].innerHTML = display
-                       document.getElementsByClassName("population")[0].innerHTML = population
+                       //console.log(population);
+
 
                    }
                }
