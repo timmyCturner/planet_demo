@@ -129,19 +129,6 @@ if (!window.requestAnimationFrame) {
            });
            init().then(response=>{animate()})
 
-
-           async function loadWorld() {
-
-
-             const loader = new GLTFLoader();
-             var earthData;
-             loader.loadAsync('/assets/scene.gltf').then((data)=>{earthData = data});
-             //console.log(earthData);
-             earthData = setupModel(earthData);
-             //console.log(earthData);
-             return earthData;
-           }
-
            async function init() {
 
                container = document.createElement( 'div' );
@@ -179,7 +166,7 @@ if (!window.requestAnimationFrame) {
 
                var geometry = new SphereGeometry( 50, 32, 16);
                //var material = new THREE.MeshBasicMaterial( { color: "#166294" } );
-               const texture = new TextureLoader().load( '/assets/textures/Earth.002_diffuse.jpeg' );
+               const texture = new TextureLoader().load( './assets/textures/Earth.002_diffuse.jpeg' );
                const material = new MeshBasicMaterial( { map: texture } );
                sphere = new Mesh( geometry, material );
                sphere.name = 'Earth'
