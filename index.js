@@ -170,12 +170,14 @@ if (!window.requestAnimationFrame) {
                sphere = new Mesh( geometry, material );
                sphere.name = 'Earth'
                //log calcrow
-               const city_list = await fetch('assets/json/sample.json').response.json();
-
+               const city_list = await fetch('assets/json/sample.json').then(response => response.json());
+               //console.log(city_list);
                  for (var i=0; i<100; i++) {
                    var temp_satalite = new Satalite();
                    temp_satalite.SatByCart(city_list[i].x, -1*city_list[i].y, city_list[i].z);
                    temp_satalite.satalite.name = city_list[i].city;
+                   console.log(city_list[i].population);
+                   temp_satalite.satalite.population = city_list[i].population;
                    scene.add( temp_satalite.satalite );
 
 
@@ -244,7 +246,17 @@ if (!window.requestAnimationFrame) {
                        // if ( INTERSECTED ) INTERSECTED.material.emissive.setHex( INTERSECTED.currentHex );
                        INTERSECTED = intersects[0].object;
                        // INTERSECTED.currentHex = INTERSECTED.material.emissive.getHex();
-                       console.log(intersects);
+                       // console.log(document.getElementsByClassName("display")[0]);
+                       // console.log(intersects);
+                       var display = intersects[0].object.name;
+                       var population = intersects[0].object.population;
+                       if (population === undefined){
+                         population = '---'
+                       }
+                       console.log(population);
+                       document.getElementsByClassName("display")[0].innerHTML = display
+                       document.getElementsByClassName("population")[0].innerHTML = population
+
                    }
                }
                renderer.render( scene, camera );
