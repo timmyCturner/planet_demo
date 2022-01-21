@@ -28,13 +28,15 @@ class Satalite {
    this.satalite.scale.z=10;
    //this.satalite.rotation.x;
    this.satalite.rotation.x=-45;
-   console.log(this);
+   //console.log(this);
    return this;
 
  }
  HeightByPopulation(){
+   //console.log(population);
    var population = this.satalite.population;
    var height=(population/8405837)*20;
+   //console.log(height);
    this.satalite.scale.z=height;
  }
  SatByLatLong(lat, long){
