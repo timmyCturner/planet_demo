@@ -274,6 +274,7 @@ if (!window.requestAnimationFrame) {
                        // console.log(intersects);
                        var display = intersects[0].object.name;
                        if (display != "Earth"){
+                         console.log(display);
                          var population = intersects[0].object.population;
                          if (population === undefined){
                            population = '---'
