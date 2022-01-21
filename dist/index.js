@@ -1,5 +1,5 @@
 import {OrbitControls} from 'https://unpkg.com/three@0.127.0/examples/jsm/controls/OrbitControls.js'
-import {SphereGeometry, MeshBasicMaterial, Raycaster, WebGLRenderer, Vector2,
+import {SphereGeometry, BoxGeometry, MeshBasicMaterial, Raycaster, WebGLRenderer, Vector2,
    Mesh, Color,  Scene,PerspectiveCamera,TextureLoader,PlaneGeometry} from 'https://unpkg.com/three@0.127.0/build/three.module.js';
 
 import { GLTFLoader } from "https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader";
@@ -9,7 +9,9 @@ class Satalite {
 
 
  constructor(){
-   var geometry = new SphereGeometry( 1, 32, 16);
+   var geometry = new BoxGeometry( 1, 1, 1);
+
+
    colorRandom();
    var material = new MeshBasicMaterial( { color: colorRandom() } );
    // enable transparency
@@ -23,10 +25,18 @@ class Satalite {
    this.satalite.position.y = 0;
    this.satalite.position.z = 0;
 
+   this.satalite.scale.z=10;
+   //this.satalite.rotation.x;
+   this.satalite.rotation.x=-45;
+   console.log(this);
    return this;
 
  }
-
+ HeightByPopulation(){
+   var population = this.satalite.population;
+   var height=(population/8405837)*20;
+   this.satalite.scale.z=height;
+ }
  SatByLatLong(lat, long){
 
    var cartesian_cordinates=calcCrow(lat,long, 50);
@@ -176,8 +186,9 @@ if (!window.requestAnimationFrame) {
                    var temp_satalite = new Satalite();
                    temp_satalite.SatByCart(city_list[i].x, -1*city_list[i].y, city_list[i].z);
                    temp_satalite.satalite.name = city_list[i].city;
-                   console.log(city_list[i].population);
+                   //console.log(city_list[i].population);
                    temp_satalite.satalite.population = city_list[i].population;
+                   temp_satalite.HeightByPopulation()
                    scene.add( temp_satalite.satalite );
 
 
