@@ -1,6 +1,6 @@
 import {OrbitControls} from 'https://unpkg.com/three@0.127.0/examples/jsm/controls/OrbitControls.js'
-import {SphereGeometry, BoxGeometry, MeshBasicMaterial, Raycaster, WebGLRenderer, Vector2,
-   Mesh, Color,  Scene,PerspectiveCamera,TextureLoader,PlaneGeometry} from 'https://unpkg.com/three@0.127.0/build/three.module.js';
+import {SphereGeometry, BoxGeometry, MeshBasicMaterial, ImageUtils, Raycaster, WebGLRenderer, Vector2,
+   Mesh, Color,  Scene,PerspectiveCamera,TextureLoader,PlaneGeometry,Camera } from 'https://unpkg.com/three@0.127.0/build/three.module.js';
 
 import { GLTFLoader } from "https://unpkg.com/three@0.127.0/examples/jsm/loaders/GLTFLoader";
 
@@ -28,15 +28,13 @@ class Satalite {
    this.satalite.scale.z=10;
    //this.satalite.rotation.x;
    this.satalite.rotation.x=-45;
-   //console.log(this);
+   // console.log(this);
    return this;
 
  }
  HeightByPopulation(){
-   //console.log(population);
    var population = this.satalite.population;
    var height=(population/8405837)*20;
-   //console.log(height);
    this.satalite.scale.z=height;
  }
  SatByLatLong(lat, long){
@@ -112,6 +110,7 @@ if (!window.requestAnimationFrame) {
 }
   var container, stats;
 
+          var back_texture ,  backgroundMesh
            var camera, scene, renderer, controls, raycaster
            var mouse = new Vector2(),
                INTERSECTED;
@@ -130,7 +129,8 @@ if (!window.requestAnimationFrame) {
            var mouseY = 0;
            var mouseYOnMouseDown = 0;
 
-
+           var backgroundScene ;
+           var backgroundCamera;
 
            var windowHalfX = window.innerWidth / 2;
            var windowHalfY = window.innerHeight / 2;
@@ -159,8 +159,19 @@ if (!window.requestAnimationFrame) {
                document.addEventListener( 'mousedown', onDocumentMouseDown, false );
 
                scene = new Scene();
-               scene.background = new Color( 0x00cccc );
+               back_texture = new TextureLoader().load( 'assets/textures/space.jpg' );
+               backgroundMesh =
+                  new MeshBasicMaterial({
+                      map: back_texture
+                  });
 
+              // backgroundMesh.material.depthTest = false;
+              // backgroundMesh.material.depthWrite = false;
+
+
+              scene.background = back_texture ;
+               //scene.background = new Color( 0x00cccc );
+               console.log(scene);
                camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
                //console.log(camera);
                camera.position.y = 0;
@@ -273,5 +284,6 @@ if (!window.requestAnimationFrame) {
                    }
                }
                renderer.render( scene, camera );
+
 
            }
