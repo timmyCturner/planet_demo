@@ -165,15 +165,12 @@ if (!window.requestAnimationFrame) {
 
                var geometry = new SphereGeometry( 50, 32, 16);
                //var material = new THREE.MeshBasicMaterial( { color: "#166294" } );
-               const texture = new TextureLoader().load( '/assets/textures/Earth.002_diffuse.jpeg' );
+               const texture = new TextureLoader().load( './assets/textures/Earth.002_diffuse.jpeg' );
                const material = new MeshBasicMaterial( { map: texture } );
                sphere = new Mesh( geometry, material );
                sphere.name = 'Earth'
                //log calcrow
-               var city_list;
-
-               // fetch('/assets/json/sample.json')
-               // fetch('http://example.com/movies.json')
+               var city_list = await fetch('./assets/json/sample.json');
                // .then(response => response.json())
                // .then(data => console.log(data))
                // .then(function(){
@@ -182,7 +179,7 @@ if (!window.requestAnimationFrame) {
                //   city_list = temp
                //   console.log(city_list);
                //
-                
+
                  for (var i=0; i<100; i++) {
                    var temp_satalite = new Satalite();
                    temp_satalite.SatByCart(city_list[i].x, -1*city_list[i].y, city_list[i].z);
