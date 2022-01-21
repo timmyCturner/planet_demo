@@ -170,25 +170,16 @@ if (!window.requestAnimationFrame) {
                sphere = new Mesh( geometry, material );
                sphere.name = 'Earth'
                //log calcrow
-               const city_list = await fetch('assets/json/sample.json');
-               console.log(city_list);
-               // .then(response => response.json())
-               // .then(data => console.log(data))
-               // .then(function(){
-               //   var temp = data
-               //   console.log(temp);
-               //   city_list = temp
-               //   console.log(city_list);
-               //
-                 //
-                 // for (var i=0; i<100; i++) {
-                 //   var temp_satalite = new Satalite();
-                 //   temp_satalite.SatByCart(city_list[i].x, -1*city_list[i].y, city_list[i].z);
-                 //   temp_satalite.satalite.name = city_list[i].city;
-                 //   scene.add( temp_satalite.satalite );
-                 //
-                 //
-                 // }
+               const city_list = await fetch('assets/json/sample.json').response.json();
+
+                 for (var i=0; i<100; i++) {
+                   var temp_satalite = new Satalite();
+                   temp_satalite.SatByCart(city_list[i].x, -1*city_list[i].y, city_list[i].z);
+                   temp_satalite.satalite.name = city_list[i].city;
+                   scene.add( temp_satalite.satalite );
+
+
+                 }
                // })
              controls.addEventListener( 'change', render);
              scene.add( sphere );
