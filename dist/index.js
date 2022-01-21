@@ -170,7 +170,7 @@ if (!window.requestAnimationFrame) {
                sphere = new Mesh( geometry, material );
                sphere.name = 'Earth'
                //log calcrow
-               var city_list = await fetch('/assets/json/sample.json');
+               const city_list = await fetch('/assets/json/sample.json');
                console.log(city_list);
                // .then(response => response.json())
                // .then(data => console.log(data))
