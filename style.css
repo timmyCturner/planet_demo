@@ -1,3 +1,19 @@
-.display{
+.display {
   font-size: 2em;
+}
+.flex-row {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.flex-row>*{
+  max-width: 50%;
+  width: 100%;
+}
+body{
+  font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+  margin: 5px 0;
 }
