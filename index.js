@@ -128,7 +128,6 @@ if (!window.requestAnimationFrame) {
              camera.position.z +=event.deltaY/50;
            });
            init().then(response=>{animate()})
-
            async function init() {
 
                container = document.createElement( 'div' );
@@ -166,7 +165,7 @@ if (!window.requestAnimationFrame) {
 
                var geometry = new SphereGeometry( 50, 32, 16);
                //var material = new THREE.MeshBasicMaterial( { color: "#166294" } );
-               const texture = new TextureLoader().load( './assets/textures/Earth.002_diffuse.jpeg' );
+               const texture = new TextureLoader().load( '/assets/textures/Earth.002_diffuse.jpeg' );
                const material = new MeshBasicMaterial( { map: texture } );
                sphere = new Mesh( geometry, material );
                sphere.name = 'Earth'
@@ -183,16 +182,15 @@ if (!window.requestAnimationFrame) {
                //   city_list = temp
                //   console.log(city_list);
                //
-               //   dictionary =[];
-               //   for (var i=0; i<100; i++) {
-               //     var temp_satalite = new Satalite();
-               //     temp_satalite.SatByCart(city_list[i].x, -1*city_list[i].y, city_list[i].z);
-               //     temp_satalite.satalite.name = city_list[i].city;
-               //     scene.add( temp_satalite.satalite );
-               //
-               //     //temp_satalite.statlite.on('click',function(ev) {});
-               //     //console.log(temp_satalite.satalite);
-               //   }
+                
+                 for (var i=0; i<100; i++) {
+                   var temp_satalite = new Satalite();
+                   temp_satalite.SatByCart(city_list[i].x, -1*city_list[i].y, city_list[i].z);
+                   temp_satalite.satalite.name = city_list[i].city;
+                   scene.add( temp_satalite.satalite );
+
+
+                 }
                // })
              controls.addEventListener( 'change', render);
              scene.add( sphere );
